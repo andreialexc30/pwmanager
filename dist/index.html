@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PW Manager</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="/main.77bb5cfd.css">
+    <script src="/main.77bb5cfd.js"></script></head>
+    <body>
+        <!-- Section w/ main -->
+        <section class="main-functions">
+            <!-- Main area -->
+            <main class="main">
+                <h1 class="main-heading">password manager</h1>
+                <p class="description">Keep track of your passwords now more easily than ever! This managing page has all the functions needed for all your 'passwording' needs. Ready and easy to use, keep all your passwords in one place without the fear of having to memorise them.</p>
+                <!-- Password with no special characters -->
+                <div class="password-notspecial">
+                    <h2 class="password-heading">Generate simple password</h2>
+                    <ul class="notspecial-list">
+                        <li class="notspecial-list_item">18 character password</li>
+                        <li class="notspecial-list_item">No special characters used</li>
+                        <li class="notspecial-list_item">Made up of random numbers and letters</li>
+                    </ul>
+                    <article class="generated_components">
+                        <div class="components">
+                            <h3 class="password-name">Name: <input class="insert_name" id="sp_input" type="text" placeholder="Password name.."></h3>
+                            <span class="warning_simple">* Must be less than 12 characters</span>
+                            <span class="warning_sp_empty">* Your password name must not be empty</span>
+                            <h3 class="password-show">Password: <span class="sp_password">password</span></h3>
+                        </div>
+                        <div class="add_password">
+                            <button class="add" id="add-simple"><i class="fas fa-plus-square"></i></button>
+                        </div>
+                    </article>
+                    <button class="generate" id="simple">generate</button>
+                </div>
+                <!-- Password with special characters -->
+                <div class="password-special">
+                    <h2 class="password-heading">Generate complex password</h2>
+                    <ul class="special-list">
+                        <li class="special-list_item">18 character password</li>
+                        <li class="special-list_item">Contains special characters</li>
+                        <li class="special-list_item">Random selection of characters</li>
+                    </ul>
+                    <article class="generated_components">
+                        <div class="components">
+                            <h3 class="password-name">Name: <input class="insert_name" id="cx_input" type="text" placeholder="Password name.."></h3>
+                            <span class="warning_complex">* Must be less than 12 characters</span>
+                            <span class="warning_cx_empty">* Your password name must not be empty</span>
+                            <h3 class="password-show">Password: <span class="cx_password">password</span></h3>
+                        </div>
+                        <div class="add_password">
+                            <button class="add" id="add-complex"><i class="fas fa-plus-square"></i></button>
+                        </div>
+                    </article>
+                    <button class="generate" id="complex">generate</button>
+                </div>
+            </main>
+        </section>
+        <!-- Section displays items -->
+        <section class="storage-display">
+            <!-- Password display area -->
+            <div class="localstorage-display">
+                <h1 class="displayed-heading">Passwords</h1>
+                <p class="displayed-description">Items will be displayed here</p>
+                <span class="displayed-warning">Max amount of stored passwords reached</span>
+                <article class="displayed_passwords">
+                    <ul class="password_list"></ul>
+                </article>
+            </div>
+            <footer class="footer">
+                <ul class="credits-list">
+                    <li class="credits-list_item">Developed by Andrei Caia</li>
+                    <li class="credits-list_item">Designed by Andrei Caia</li>
+                    <li class="credits-list_item">Images from <a href="https://unsplash.com" class="source_link">unsplash.com</a></li>
+                    <li class="credits-list_item">Icons from <a href="https://fontawesome.com" class="source_link">fontawesome.com</a></li>
+                </ul>
+            </footer>
+        </section>
+        <script src="/pw.860339c5.js"></script>
+    </body>
+</html>

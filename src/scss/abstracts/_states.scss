@@ -1,0 +1,30 @@
+@use '../abstracts/globals' as *;
+
+// Buttons
+.generate:hover {
+    transform: scale(1.1);
+    box-shadow: .2rem .6rem 1rem #000;
+}
+
+// UL 
+.notspecial-list > li::marker {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $headingColor;
+}
+
+.special-list > li::marker {
+    content: '\f12a';
+    font-family: 'Font Awesome 5 Free';
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $headingColor;
+}
+
+// links
+.source_link:hover,
+.source_link:focus {
+    text-decoration: underline !important;
+}

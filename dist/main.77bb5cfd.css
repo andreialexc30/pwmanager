@@ -1,0 +1,236 @@
+@charset "UTF-8";
+.generate:hover {
+  transform: scale(1.1);
+  box-shadow: 0.2rem 0.6rem 1rem #000;
+}
+
+.notspecial-list > li::marker {
+  content: "";
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #374581;
+}
+
+.special-list > li::marker {
+  content: "";
+  font-family: "Font Awesome 5 Free";
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #374581;
+}
+
+.source_link:hover,
+.source_link:focus {
+  text-decoration: underline !important;
+}
+
+.main-functions {
+  width: 50%;
+  height: 100%;
+  background-color: #BBC2E2B8;
+}
+.main-functions .main-heading {
+  margin: 1em 0 1em 0.5em;
+  font-size: 2.5rem;
+  text-transform: capitalize;
+  font-weight: 800;
+}
+.main-functions .description {
+  width: 100%;
+  padding: 0 0 1em 1em;
+  color: #464f5d;
+  border-bottom: 2px solid #374581;
+}
+
+.notspecial-list li,
+.special-list li {
+  padding-left: 0.5em;
+}
+
+.password-notspecial {
+  margin: 5em 2.5em 5em 2.5em;
+}
+
+.password-special {
+  margin: 5em 2.5em 2em 2.5em;
+}
+
+.password-heading {
+  margin: 0.5em 0;
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
+.password-show {
+  margin: 0.5em 0;
+}
+.password-show .sp_password,
+.password-show .cx_password {
+  color: #fff;
+}
+
+.generated_components {
+  display: flex;
+  justify-content: space-between;
+}
+.generated_components .warning_simple,
+.generated_components .warning_complex,
+.generated_components .warning_sp_empty,
+.generated_components .warning_cx_empty {
+  font-size: 0.8rem;
+  color: #ba3737;
+  display: none;
+}
+.generated_components .add {
+  height: 65px;
+  width: 50px;
+  border: none;
+  background: none;
+}
+.generated_components .add .fa-plus-square {
+  font-size: 2.5rem;
+  cursor: pointer;
+  pointer-events: inherit;
+  color: #374581;
+}
+
+.generate {
+  width: 200px;
+  height: 35px;
+  border: none;
+  background: #495bab;
+  color: #fff;
+  cursor: pointer;
+  margin: 2.5em 0;
+  box-shadow: 0.1rem 0.3rem 0.5rem #000;
+  text-transform: uppercase;
+  transition: ease-in 300ms;
+  letter-spacing: 2.5px;
+}
+
+.storage-display {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.storage-display .localstorage-display {
+  width: 600px;
+  margin: 1em 0;
+  background-color: #BBC2E2B8;
+  text-align: center;
+}
+.storage-display .localstorage-display .displayed-heading {
+  text-transform: uppercase;
+  padding: 1em 0;
+  font-weight: 700;
+}
+.storage-display .localstorage-display .displayed-warning {
+  color: red;
+  display: none;
+}
+.storage-display .localstorage-display .displayed_passwords {
+  margin: 1em 0;
+  padding: 1em;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list {
+  padding: 0;
+  list-style: none;
+  color: #374581;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list .listedPassword {
+  display: flex;
+  justify-content: space-between;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list-item {
+  padding: 0.35em 0;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list .spanTest {
+  width: 150px;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list .pw_name,
+.storage-display .localstorage-display .displayed_passwords .password_list .pw_password {
+  color: #fff;
+  font-weight: 400;
+  width: 100%;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list .remove_pw {
+  height: 65px;
+  width: 50px;
+  border: none;
+  background: none;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list .remove_pw .fa-minus-square {
+  font-size: 2.5rem;
+  cursor: pointer;
+  pointer-events: inherit;
+  color: #374581;
+}
+
+.footer {
+  align-self: end;
+  font-size: 1.1rem;
+  margin-right: 1em;
+}
+.footer .credits-list {
+  list-style: none;
+  color: #fff;
+  padding: 0;
+}
+.footer .credits-list .source_link {
+  text-decoration: none;
+  color: #899cef;
+  text-shadow: 2px 2px #000;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Staatliches", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  min-height: 100vh;
+  background-image: url("/mountain.2b473959.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  display: flex;
+}
+
+h1, h2,
+h3, h4 {
+  margin: 0;
+  padding: 0;
+  color: #374581;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  padding-left: 1em;
+  margin: 1.5em 0;
+  color: #464f5d;
+}
+
+/*# sourceMappingURL=/main.77bb5cfd.css.map */

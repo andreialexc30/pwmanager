@@ -1,0 +1,81 @@
+@use '../abstracts' as *;
+
+.storage-display {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .localstorage-display {
+        width: 600px;
+        margin: 1em 0;
+        background-color: $mainBgOP;
+        text-align: center;
+
+        .displayed-heading {
+            text-transform: uppercase;
+            padding: 1em 0;
+            font-weight: $fwBold;
+        }
+
+        .displayed-warning {
+            color: red;
+            display: none;
+        }
+
+        .displayed_passwords {
+            margin: 1em 0;
+            padding: 1em;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+
+            .password_list {
+                padding: 0;
+                list-style: none;
+                color: $headingColor;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .listedPassword {
+                    display: flex;
+                    justify-content: space-between;
+                }
+    
+                &-item {
+                    padding: .35em 0;
+                    font-weight: $fwBold;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                }
+
+                .spanTest {
+                    width: 150px;
+                }
+    
+                .pw_name,
+                .pw_password {
+                    color: #fff;
+                    font-weight: $fwNorm;
+                    width: 100%;
+                }
+
+                .remove_pw {
+                    height: 65px;
+                    width: 50px;
+                    border: none;
+                    background: none;
+
+                    .fa-minus-square {
+                        font-size: 2.5rem;
+                        cursor: pointer;
+                        pointer-events: inherit;
+                        color: $headingColor;
+                    }
+                }
+            }
+        }
+    }
+}

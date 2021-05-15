@@ -1,0 +1,93 @@
+@use '../abstracts' as *;
+
+.main-functions {
+    width: 50%;
+    height: 100%;
+    background-color: $mainBgOP;
+
+    .main-heading {
+        margin: 1em 0 1em .5em;
+        font-size: 2.5rem;
+        text-transform: capitalize;
+        font-weight: $fwBbold;
+    }
+
+    .description {
+        width: 100%;
+        padding: 0 0 1em 1em;
+        color: $pColor;
+        border-bottom: 2px solid $headingColor;
+    }
+}
+
+.notspecial-list,
+.special-list {
+    li {
+        padding-left: .5em;
+    }
+}
+
+.password-notspecial {
+    margin: 5em 2.5em 5em 2.5em;
+}
+
+.password-special {
+    margin: 5em 2.5em 2em 2.5em;
+}
+
+.password-heading {
+    margin: .5em 0;
+    text-transform: capitalize;
+    font-weight: $fwBold;
+}
+
+.password-show {
+    margin: .5em 0;
+
+    .sp_password,
+    .cx_password {
+        color: #fff;
+    }
+}
+
+.generated_components {
+    display: flex;
+    justify-content: space-between;
+
+    .warning_simple,
+    .warning_complex,
+    .warning_sp_empty,
+    .warning_cx_empty {
+        font-size: .8rem;
+        color: rgb(186, 55, 55);
+        display: none;
+    }
+
+    .add {
+        height: 65px;
+        width: 50px;
+        border: none;
+        background: none;
+
+        .fa-plus-square {
+            font-size: 2.5rem;
+            cursor: pointer;
+            pointer-events: inherit;
+            color: $headingColor;
+        }
+    }
+}
+
+.generate {
+    width: 200px;
+    height: 35px;
+    border: none;
+    background: $btnShade;
+    color: #fff;
+    cursor: pointer;
+    margin: 2.5em 0;
+    box-shadow: .1rem .3rem .5rem #000;
+    text-transform: uppercase;
+    transition: ease-in 300ms;
+    letter-spacing: 2.5px;
+}

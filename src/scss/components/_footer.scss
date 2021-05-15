@@ -1,0 +1,19 @@
+@use '../abstracts' as *;
+
+.footer {
+    align-self: end;
+    font-size: 1.1rem;
+    margin-right: 1em;
+
+    .credits-list {
+        list-style: none;
+        color: #fff;
+        padding: 0;
+
+        .source_link {
+            text-decoration: none;
+            color: $sourceLink;
+            text-shadow: 2px 2px #000;
+        }
+    }
+}
