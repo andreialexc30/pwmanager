@@ -7,6 +7,7 @@ const btnSp = document.getElementById('simple')
 const btnCx = document.getElementById('complex')
 const addSp = document.getElementById('add-simple')
 const addCx = document.getElementById('add-complex')
+const clearBtn = document.getElementById('clearList')
 const spInput = document.getElementById('sp_input')
 const cxInput = document.getElementById('cx_input')
 const passwordList = document.querySelector('.password_list')
@@ -15,19 +16,12 @@ const passCx = document.querySelector('.cx_password')
 const pwName = document.querySelector('.pw_name')
 const pwPass = document.querySelector('.pw_password')
 const display = document.querySelector('.localstorage-display')
+let ls = window.localStorage
 
 window.addEventListener('DOMContentLoaded', contentLoaded)
 
-// create distinct random generation functions for each array
-function randomSp() {
-    return Math.floor(Math.random() * sp.length)
-}
-
-function randomCx() {
-    return Math.floor(Math.random() * cx.length)
-}
-
-// password events
+// !!!! button events
+// generates simple password
 btnSp.addEventListener('click', () => {
     let passContent = ''
     for (let i = 0; i < 18; i++) {
@@ -37,6 +31,7 @@ btnSp.addEventListener('click', () => {
     }
 })
 
+// generates complex password
 btnCx.addEventListener('click', () => {
     let passContent = ''
     for (let i = 0; i < 18; i++) {
@@ -46,15 +41,48 @@ btnCx.addEventListener('click', () => {
     }
 })
 
-// functions
+// button states disabled/enabled
+clearBtn.disabled = true
+clearBtn.style.backgroundColor = '#464f5d'
+
+if (localStorage.length >= 1) {
+    clearBtn.disabled = false
+    clearBtn.style.backgroundColor = '#495bab'
+}
+
+// clears local storage
+clearBtn.addEventListener('click', () => {
+    localStorage.clear()
+    location.reload()
+})
+
+// !!!! functions
+// create random generation functions for each array
+function randomSp() {
+    return Math.floor(Math.random() * sp.length)
+}
+
+function randomCx() {
+    return Math.floor(Math.random() * cx.length)
+}
+
 function contentLoaded() {
     // add name & simple password to list
     addSp.addEventListener('click', addSpPassword)
 
     // add name & complex password to list
     addCx.addEventListener('click', addCxPassword)
+
+    // get localStorage items
+    for(let i = 0; i < localStorage.length; i++) {
+        const key = ls.key(i)
+        const value = ls.getItem(key)
+
+        createAppend(key, value)
+    }
 }
 
+// adds simple password
 function addSpPassword() {
     // select input values
     const simpleInput = spInput.value
@@ -63,37 +91,24 @@ function addSpPassword() {
     // check if name is less than 12 characters
     const warning = document.querySelector('.warning_simple')
     const warning_empty = document.querySelector('.warning_sp_empty')
-    if(simpleInput.length > 12) {
+    if (simpleInput.length > 12) {
         warning.style.display = 'block'
         return
-    } else if(simpleInput.length == 0) {
+    } else if (simpleInput.length == 0 || pwValue === 'not generated') {
         warning_empty.style.display = 'block'
         return
     } else {
-        // hide warning
+        // hide warnings
         warning.style.display = 'none'
         warning_empty.style.display = 'none'
-
-        // create child & append
-        const listItem = document.createElement('li')
-        const wrapper = document.createElement('div')
-        const removeBtn = document.createElement('button')
-        wrapper.className = 'listedPassword'
-        listItem.className = 'password_list-item'
-        wrapper.innerHTML = `<span class="spanTest">Name:</span><span class="pw_name">${simpleInput}</span><span class="spanTests">Password:</span><spanc class="pw_password">${pwValue}</span>`
-        removeBtn.className = 'remove_pw'
-        removeBtn.innerHTML = `<i class="fas fa-minus-square"></i>`
-
-        listItem.appendChild(wrapper)
-        listItem.appendChild(removeBtn)
-
-        // Max number of passwords allowed to be stored
-        checkMax(listItem)
+        localStorage.setItem(simpleInput, pwValue)
+        
+        createAppend(simpleInput, pwValue)
+        refresh(spInput)
     }
-
-    removePw()
 }
 
+// adds complex password
 function addCxPassword() {
     // select input values
     const complexInput = cxInput.value
@@ -102,56 +117,54 @@ function addCxPassword() {
     // check if name is less than 12 characters
     const warning = document.querySelector('.warning_complex')
     const warning_empty = document.querySelector('.warning_cx_empty')
-    if(complexInput.length > 12) {
+    if (complexInput.length > 12) {
         warning.style.display = 'block'
         return
-    } else if(complexInput.length == 0) {
+    } else if (complexInput.length == 0 || pwValue === 'not generated') {
         warning_empty.style.display = 'block'
         return
     } else {
-        // hide warning
+        // hide warnings and push to storage
         warning.style.display = 'none'
         warning_empty.style.display = 'none'
+        localStorage.setItem(complexInput, pwValue)
 
-        // create child & append
-        const wrapper = document.createElement('div')
-        const listItem = document.createElement('li')
-        const removeBtn = document.createElement('button')
-        wrapper.className = 'listedPassword'
-        listItem.className = 'password_list-item'
-        wrapper.innerHTML = `<span class="spanTest">Name:</span><span class="pw_name">${complexInput}</span><span class="spanTests">Password:</span><spanc class="pw_password">${pwValue}</span>`
-        removeBtn.className = 'remove_pw'
-        removeBtn.innerHTML = `<i class="fas fa-minus-square"></i>`
-
-        listItem.appendChild(wrapper)
-        listItem.appendChild(removeBtn)
-
-        // Max number of passwords allowed to be stored
-        checkMax(listItem)
+        createAppend(complexInput, pwValue)
+        refresh(cxInput)
     }
-
-    removePw()
 }
 
 function checkMax(listItem) {
     // Max number of passwords allowed to be stored
-    if(passwordList.childNodes.length < 6) {
+    if(localStorage.length && passwordList.childNodes.length < 6 || localStorage.length && passwordList.childNodes.length == 0) {
         passwordList.appendChild(listItem)
-    } else {
+    } else if (localStorage.length && passwordList.childNodes.length == 6) {
         const displayedWarning = document.querySelector('.displayed-warning')
-        displayedWarning.style.display = 'block';
+        displayedWarning.style.display = 'block'
         return
     }
 }
 
-function removePw() {
-    // Remove pw 
-    const removePw = document.querySelector('.remove_pw')
-    const listItem = document.querySelector('.password_list-item')
-    const wrapper = document.querySelector('.listedPassword')
+function createAppend(status, value) {    
+    // create child & append
+    const wrapper = document.createElement('div')
+    const listItem = document.createElement('li')
+    const removeBtn = document.createElement('button')
+    wrapper.className = 'listedPassword'
+    listItem.className = 'password_list-item'
+    wrapper.innerHTML = `<span class="spanTest">Name:</span><span class="pw_name">${status}</span><span class="spanTests">Password:</span><spanc class="pw_password">${value}</span>`
+    removeBtn.className = 'remove_pw'
+    removeBtn.innerHTML = `<i class="fas fa-minus-square"></i>`
 
-    removePw.addEventListener('click', () => {
-        console.log(wrapper.parentElement.parentElement.removeChild(listItem))
-        // console.log('working')
-    })
+    listItem.appendChild(wrapper)
+    listItem.appendChild(removeBtn)
+
+    // Max number of passwords allowed to be stored
+    checkMax(listItem)
+}
+
+function refresh(input) {
+    // clear input 
+    input.value = ''
+    location.reload()
 }
