@@ -64,14 +64,17 @@
     }
 
     .add {
+        cursor: pointer;
         height: 65px;
         width: 50px;
         border: none;
         background: none;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1.01rem;
 
         .fa-plus-square {
             font-size: 2.5rem;
-            cursor: pointer;
             pointer-events: inherit;
             color: $headingColor;
         }

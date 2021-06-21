@@ -11,17 +11,23 @@
         width: 600px;
         margin: 1em 0;
         background-color: $mainBgOP;
-        text-align: center;
 
         .displayed-heading {
             text-transform: uppercase;
+            text-align: center;
             padding: 1em 0;
             font-weight: $fwBold;
+        }
+
+        .displayed-description {
+            text-align: center;
+            color: $pColor;
         }
 
         .displayed-warning {
             color: red;
             display: none;
+            text-align: center;
         }
 
         .displayed_passwords {
@@ -29,6 +35,19 @@
             padding: 1em;
             border-top: 2px solid black;
             border-bottom: 2px solid black;
+
+            .clear_list {
+                width: 100px;
+                height: 30px;
+                border: none;
+                color: #fff;
+                cursor: pointer;
+                margin-left: 1em;
+                box-shadow: .1rem .3rem .5rem #000;
+                text-transform: uppercase;
+                transition: ease-in 300ms;
+                letter-spacing: 1.5px;
+            }
 
             .password_list {
                 padding: 0;
