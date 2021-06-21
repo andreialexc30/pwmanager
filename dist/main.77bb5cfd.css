@@ -83,14 +83,17 @@
   display: none;
 }
 .generated_components .add {
+  cursor: pointer;
   height: 65px;
   width: 50px;
   border: none;
   background: none;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.01rem;
 }
 .generated_components .add .fa-plus-square {
   font-size: 2.5rem;
-  cursor: pointer;
   pointer-events: inherit;
   color: #374581;
 }
@@ -120,22 +123,39 @@
   width: 600px;
   margin: 1em 0;
   background-color: #BBC2E2B8;
-  text-align: center;
 }
 .storage-display .localstorage-display .displayed-heading {
   text-transform: uppercase;
+  text-align: center;
   padding: 1em 0;
   font-weight: 700;
+}
+.storage-display .localstorage-display .displayed-description {
+  text-align: center;
+  color: #464f5d;
 }
 .storage-display .localstorage-display .displayed-warning {
   color: red;
   display: none;
+  text-align: center;
 }
 .storage-display .localstorage-display .displayed_passwords {
   margin: 1em 0;
   padding: 1em;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
+}
+.storage-display .localstorage-display .displayed_passwords .clear_list {
+  width: 100px;
+  height: 30px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 1em;
+  box-shadow: 0.1rem 0.3rem 0.5rem #000;
+  text-transform: uppercase;
+  transition: ease-in 300ms;
+  letter-spacing: 1.5px;
 }
 .storage-display .localstorage-display .displayed_passwords .password_list {
   padding: 0;
@@ -212,7 +232,6 @@ body {
   background-image: url("/mountain.2b473959.webp");
   background-repeat: no-repeat;
   background-size: cover;
-  object-fit: cover;
   display: flex;
 }
 

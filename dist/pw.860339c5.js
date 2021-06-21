@@ -126,6 +126,7 @@ var btnSp = document.getElementById('simple');
 var btnCx = document.getElementById('complex');
 var addSp = document.getElementById('add-simple');
 var addCx = document.getElementById('add-complex');
+var clearBtn = document.getElementById('clearList');
 var spInput = document.getElementById('sp_input');
 var cxInput = document.getElementById('cx_input');
 var passwordList = document.querySelector('.password_list');
@@ -134,16 +135,9 @@ var passCx = document.querySelector('.cx_password');
 var pwName = document.querySelector('.pw_name');
 var pwPass = document.querySelector('.pw_password');
 var display = document.querySelector('.localstorage-display');
-window.addEventListener('DOMContentLoaded', contentLoaded); // create distinct random generation functions for each array
-
-function randomSp() {
-  return Math.floor(Math.random() * sp.length);
-}
-
-function randomCx() {
-  return Math.floor(Math.random() * cx.length);
-} // password events
-
+var ls = window.localStorage;
+window.addEventListener('DOMContentLoaded', contentLoaded); // !!!! button events
+// generates simple password
 
 btnSp.addEventListener('click', function () {
   var passContent = '';
@@ -152,7 +146,8 @@ btnSp.addEventListener('click', function () {
     passContent += sp[randomSp()];
     passSp.textContent = passContent;
   }
-});
+}); // generates complex password
+
 btnCx.addEventListener('click', function () {
   var passContent = '';
 
@@ -160,14 +155,44 @@ btnCx.addEventListener('click', function () {
     passContent += cx[randomCx()];
     passCx.textContent = passContent;
   }
-}); // functions
+}); // button states disabled/enabled
+
+clearBtn.disabled = true;
+clearBtn.style.backgroundColor = '#464f5d';
+
+if (localStorage.length >= 1) {
+  clearBtn.disabled = false;
+  clearBtn.style.backgroundColor = '#495bab';
+} // clears local storage
+
+
+clearBtn.addEventListener('click', function () {
+  localStorage.clear();
+  location.reload();
+}); // !!!! functions
+// create random generation functions for each array
+
+function randomSp() {
+  return Math.floor(Math.random() * sp.length);
+}
+
+function randomCx() {
+  return Math.floor(Math.random() * cx.length);
+}
 
 function contentLoaded() {
   // add name & simple password to list
   addSp.addEventListener('click', addSpPassword); // add name & complex password to list
 
-  addCx.addEventListener('click', addCxPassword);
-}
+  addCx.addEventListener('click', addCxPassword); // get localStorage items
+
+  for (var i = 0; i < localStorage.length; i++) {
+    var key = ls.key(i);
+    var value = ls.getItem(key);
+    createAppend(key, value);
+  }
+} // adds simple password
+
 
 function addSpPassword() {
   // select input values
@@ -180,30 +205,19 @@ function addSpPassword() {
   if (simpleInput.length > 12) {
     warning.style.display = 'block';
     return;
-  } else if (simpleInput.length == 0) {
+  } else if (simpleInput.length == 0 || pwValue === 'not generated') {
     warning_empty.style.display = 'block';
     return;
   } else {
-    // hide warning
+    // hide warnings
     warning.style.display = 'none';
-    warning_empty.style.display = 'none'; // create child & append
-
-    var listItem = document.createElement('li');
-    var wrapper = document.createElement('div');
-    var removeBtn = document.createElement('button');
-    wrapper.className = 'listedPassword';
-    listItem.className = 'password_list-item';
-    wrapper.innerHTML = "<span class=\"spanTest\">Name:</span><span class=\"pw_name\">".concat(simpleInput, "</span><span class=\"spanTests\">Password:</span><spanc class=\"pw_password\">").concat(pwValue, "</span>");
-    removeBtn.className = 'remove_pw';
-    removeBtn.innerHTML = "<i class=\"fas fa-minus-square\"></i>";
-    listItem.appendChild(wrapper);
-    listItem.appendChild(removeBtn); // Max number of passwords allowed to be stored
-
-    checkMax(listItem);
+    warning_empty.style.display = 'none';
+    localStorage.setItem(simpleInput, pwValue);
+    createAppend(simpleInput, pwValue);
+    refresh(spInput);
   }
+} // adds complex password
 
-  removePw();
-}
 
 function addCxPassword() {
   // select input values
@@ -216,50 +230,50 @@ function addCxPassword() {
   if (complexInput.length > 12) {
     warning.style.display = 'block';
     return;
-  } else if (complexInput.length == 0) {
+  } else if (complexInput.length == 0 || pwValue === 'not generated') {
     warning_empty.style.display = 'block';
     return;
   } else {
-    // hide warning
+    // hide warnings and push to storage
     warning.style.display = 'none';
-    warning_empty.style.display = 'none'; // create child & append
-
-    var wrapper = document.createElement('div');
-    var listItem = document.createElement('li');
-    var removeBtn = document.createElement('button');
-    wrapper.className = 'listedPassword';
-    listItem.className = 'password_list-item';
-    wrapper.innerHTML = "<span class=\"spanTest\">Name:</span><span class=\"pw_name\">".concat(complexInput, "</span><span class=\"spanTests\">Password:</span><spanc class=\"pw_password\">").concat(pwValue, "</span>");
-    removeBtn.className = 'remove_pw';
-    removeBtn.innerHTML = "<i class=\"fas fa-minus-square\"></i>";
-    listItem.appendChild(wrapper);
-    listItem.appendChild(removeBtn); // Max number of passwords allowed to be stored
-
-    checkMax(listItem);
+    warning_empty.style.display = 'none';
+    localStorage.setItem(complexInput, pwValue);
+    createAppend(complexInput, pwValue);
+    refresh(cxInput);
   }
-
-  removePw();
 }
 
 function checkMax(listItem) {
   // Max number of passwords allowed to be stored
-  if (passwordList.childNodes.length < 6) {
+  if (localStorage.length && passwordList.childNodes.length < 6 || localStorage.length && passwordList.childNodes.length == 0) {
     passwordList.appendChild(listItem);
-  } else {
+  } else if (localStorage.length && passwordList.childNodes.length == 6) {
     var displayedWarning = document.querySelector('.displayed-warning');
     displayedWarning.style.display = 'block';
     return;
   }
 }
 
-function removePw() {
-  // Remove pw 
-  var removePw = document.querySelector('.remove_pw');
-  var listItem = document.querySelector('.password_list-item');
-  var wrapper = document.querySelector('.listedPassword');
-  removePw.addEventListener('click', function () {
-    console.log(wrapper.parentElement.parentElement.removeChild(listItem)); // console.log('working')
-  });
+function createAppend(status, value) {
+  // create child & append
+  var wrapper = document.createElement('div');
+  var listItem = document.createElement('li');
+  var removeBtn = document.createElement('button');
+  wrapper.className = 'listedPassword';
+  listItem.className = 'password_list-item';
+  wrapper.innerHTML = "<span class=\"spanTest\">Name:</span><span class=\"pw_name\">".concat(status, "</span><span class=\"spanTests\">Password:</span><spanc class=\"pw_password\">").concat(value, "</span>");
+  removeBtn.className = 'remove_pw';
+  removeBtn.innerHTML = "<i class=\"fas fa-minus-square\"></i>";
+  listItem.appendChild(wrapper);
+  listItem.appendChild(removeBtn); // Max number of passwords allowed to be stored
+
+  checkMax(listItem);
+}
+
+function refresh(input) {
+  // clear input 
+  input.value = '';
+  location.reload();
 }
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -289,7 +303,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49873" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53781" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

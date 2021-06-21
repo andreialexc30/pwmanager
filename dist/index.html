@@ -29,11 +29,11 @@
                         <div class="components">
                             <h3 class="password-name">Name: <input class="insert_name" id="sp_input" type="text" placeholder="Password name.."></h3>
                             <span class="warning_simple">* Must be less than 12 characters</span>
-                            <span class="warning_sp_empty">* Your password name must not be empty</span>
-                            <h3 class="password-show">Password: <span class="sp_password">password</span></h3>
+                            <span class="warning_sp_empty">* Your password name must not be empty / No password generated</span>
+                            <h3 class="password-show">Password: <span class="sp_password">not generated</span></h3>
                         </div>
                         <div class="add_password">
-                            <button class="add" id="add-simple"><i class="fas fa-plus-square"></i></button>
+                            <button class="add" id="add-simple"><i class="fas fa-plus-square"></i>add</button>
                         </div>
                     </article>
                     <button class="generate" id="simple">generate</button>
@@ -50,11 +50,11 @@
                         <div class="components">
                             <h3 class="password-name">Name: <input class="insert_name" id="cx_input" type="text" placeholder="Password name.."></h3>
                             <span class="warning_complex">* Must be less than 12 characters</span>
-                            <span class="warning_cx_empty">* Your password name must not be empty</span>
-                            <h3 class="password-show">Password: <span class="cx_password">password</span></h3>
+                            <span class="warning_cx_empty">* Your password name must not be empty / No password generated</span>
+                            <h3 class="password-show">Password: <span class="cx_password">not generated</span></h3>
                         </div>
                         <div class="add_password">
-                            <button class="add" id="add-complex"><i class="fas fa-plus-square"></i></button>
+                            <button class="add" id="add-complex"><i class="fas fa-plus-square"></i>add</button>
                         </div>
                     </article>
                     <button class="generate" id="complex">generate</button>
@@ -68,9 +68,10 @@
                 <h1 class="displayed-heading">Passwords</h1>
                 <p class="displayed-description">Items will be displayed here</p>
                 <span class="displayed-warning">Max amount of stored passwords reached</span>
-                <article class="displayed_passwords">
+                <main class="displayed_passwords">
+                    <button id="clearList" class="clear_list">clear</button>
                     <ul class="password_list"></ul>
-                </article>
+                </main>
             </div>
             <footer class="footer">
                 <ul class="credits-list">
