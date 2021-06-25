@@ -4,6 +4,10 @@
   box-shadow: 0.2rem 0.6rem 1rem #000;
 }
 
+.clear_list:enabled:hover {
+  box-shadow: 0.05rem 0.1rem 0.25rem #000 !important;
+}
+
 .notspecial-list > li::marker {
   content: "";
   font-family: "Font Awesome 5 Free";
@@ -40,7 +44,6 @@
   width: 100%;
   padding: 0 0 1em 1em;
   color: #464f5d;
-  border-bottom: 2px solid #374581;
 }
 
 .notspecial-list li,
@@ -154,7 +157,7 @@
   margin-left: 1em;
   box-shadow: 0.1rem 0.3rem 0.5rem #000;
   text-transform: uppercase;
-  transition: ease-in 300ms;
+  transition: box-shadow ease-in-out 250ms;
   letter-spacing: 1.5px;
 }
 .storage-display .localstorage-display .displayed_passwords .password_list {
@@ -168,6 +171,7 @@
 .storage-display .localstorage-display .displayed_passwords .password_list .listedPassword {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 .storage-display .localstorage-display .displayed_passwords .password_list-item {
   padding: 0.35em 0;
@@ -183,17 +187,30 @@
 .storage-display .localstorage-display .displayed_passwords .password_list .pw_password {
   color: #fff;
   font-weight: 400;
-  width: 100%;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list .pw_name {
+  width: 5vw;
+}
+.storage-display .localstorage-display .displayed_passwords .password_list .pw_password {
+  margin-right: 1.2em;
+  width: 18ch;
 }
 .storage-display .localstorage-display .displayed_passwords .password_list .remove_pw {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 65px;
   width: 50px;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
   border: none;
   background: none;
+  padding-left: 2.25em;
 }
 .storage-display .localstorage-display .displayed_passwords .password_list .remove_pw .fa-minus-square {
-  font-size: 2.5rem;
-  cursor: pointer;
+  font-size: 2.25rem;
   pointer-events: inherit;
   color: #374581;
 }

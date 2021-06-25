@@ -212,7 +212,7 @@ function addSpPassword() {
     // hide warnings
     warning.style.display = 'none';
     warning_empty.style.display = 'none';
-    localStorage.setItem(simpleInput, pwValue);
+    pushToStorage(simpleInput, pwValue);
     createAppend(simpleInput, pwValue);
     refresh(spInput);
   }
@@ -247,7 +247,7 @@ function checkMax(listItem) {
   // Max number of passwords allowed to be stored
   if (localStorage.length && passwordList.childNodes.length < 6 || localStorage.length && passwordList.childNodes.length == 0) {
     passwordList.appendChild(listItem);
-  } else if (localStorage.length && passwordList.childNodes.length == 6) {
+  } else {
     var displayedWarning = document.querySelector('.displayed-warning');
     displayedWarning.style.display = 'block';
     return;
@@ -261,13 +261,32 @@ function createAppend(status, value) {
   var removeBtn = document.createElement('button');
   wrapper.className = 'listedPassword';
   listItem.className = 'password_list-item';
-  wrapper.innerHTML = "<span class=\"spanTest\">Name:</span><span class=\"pw_name\">".concat(status, "</span><span class=\"spanTests\">Password:</span><spanc class=\"pw_password\">").concat(value, "</span>");
+  wrapper.innerHTML = "Name:<span class=\"pw_name\">".concat(status, "</span>Password:<span class=\"pw_password\">").concat(value, "</span>");
   removeBtn.className = 'remove_pw';
-  removeBtn.innerHTML = "<i class=\"fas fa-minus-square\"></i>";
+  removeBtn.innerHTML = "<i class=\"fas fa-minus-square\"></i>remove";
   listItem.appendChild(wrapper);
   listItem.appendChild(removeBtn); // Max number of passwords allowed to be stored
 
   checkMax(listItem);
+  getButton(removeBtn);
+}
+
+function pushToStorage(key, value) {
+  if (localStorage.length < 6) {
+    localStorage.setItem(key, value);
+  } else {
+    return;
+  }
+}
+
+function getButton(btn) {
+  btn.addEventListener('click', function () {
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = ls.key(i);
+      localStorage.removeItem(key);
+      location.reload();
+    }
+  });
 }
 
 function refresh(input) {
@@ -303,7 +322,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53781" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56560" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
