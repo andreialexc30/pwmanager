@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "serve -s src/index.html",
-    "build": "parcel build src/index.html",
+    "build": "parcel build dist/index.html",
     "heroku-prebuild": "npm install -f",
     "heroku-postbuild": "npm run build"
   },
