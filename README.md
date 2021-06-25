@@ -18,4 +18,4 @@ This project has been created with HTML5/CSS3 & the SASS preprocessor along with
 </ul>
 
 <h3>Live version</h3>
-Available at: tba
+Available at: https://webpassmanager.netlify.app/
