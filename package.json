@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "start": "serve -s src/index.html",
+    "build": "parcel build src/index.html",
+    "heroku-prebuild": "npm install -f",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "parcel-bundler": "^1.12.5",
     "sass": "^1.32.8"
+  },
+  "dependencies": {
+    "serve": "^12.0.0"
   }
 }
