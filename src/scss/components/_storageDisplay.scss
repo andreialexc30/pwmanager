@@ -45,7 +45,7 @@
                 margin-left: 1em;
                 box-shadow: .1rem .3rem .5rem #000;
                 text-transform: uppercase;
-                transition: ease-in 300ms;
+                transition: box-shadow ease-in-out 250ms;
                 letter-spacing: 1.5px;
             }
 
@@ -60,6 +60,7 @@
                 .listedPassword {
                     display: flex;
                     justify-content: space-between;
+                    width: 100%;
                 }
     
                 &-item {
@@ -78,18 +79,33 @@
                 .pw_password {
                     color: #fff;
                     font-weight: $fwNorm;
-                    width: 100%;
+                }
+
+                .pw_name {
+                    width: 5vw;
+                }
+
+                .pw_password {
+                    margin-right: 1.2em;
+                    width: 18ch;
                 }
 
                 .remove_pw {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
                     height: 65px;
                     width: 50px;
+                    text-transform: uppercase;
+                    color: #fff;
+                    cursor: pointer;
                     border: none;
                     background: none;
+                    padding-left: 2.25em;
 
                     .fa-minus-square {
-                        font-size: 2.5rem;
-                        cursor: pointer;
+                        font-size: 2.25rem;
                         pointer-events: inherit;
                         color: $headingColor;
                     }
