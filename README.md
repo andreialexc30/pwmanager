@@ -18,8 +18,16 @@ This project has been created with HTML5/CSS3 & the SASS preprocessor along with
 </ul>
 
 <h3>Live version</h3>
+<<<<<<< HEAD
 Available at: tba
 
 <hr />
 <h4>Known bugs:</h4>
 <p>Deleting one item from local storage deletes half of the storage</p>
+=======
+Available at: https://webpassmanager.netlify.app/
+
+<hr />
+<h4>Known bugs</h4>
+<p>Deleting an item from local storage deletes half of the storage</p>
+>>>>>>> 8c47cb295f38452ce0c7748beb924b9dba184914
