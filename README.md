@@ -19,3 +19,7 @@ This project has been created with HTML5/CSS3 & the SASS preprocessor along with
 
 <h3>Live version</h3>
 Available at: https://webpassmanager.netlify.app/
+
+<hr />
+<h4>Known bugs</h4>
+<p>Deleting an item from local storage deletes half of the storage</p>
