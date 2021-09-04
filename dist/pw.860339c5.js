@@ -187,9 +187,10 @@ function contentLoaded() {
   addCx.addEventListener('click', addCxPassword); // get localStorage items
 
   for (var i = 0; i < localStorage.length; i++) {
-    var key = ls.key(i);
-    var value = ls.getItem(key);
-    createAppend(key, value);
+    var _key = ls.key(i);
+
+    var value = ls.getItem(_key);
+    createAppend(_key, value);
   }
 } // adds simple password
 
@@ -204,10 +205,8 @@ function addSpPassword() {
 
   if (simpleInput.length > 12) {
     warning.style.display = 'block';
-    return;
   } else if (simpleInput.length == 0 || pwValue === 'not generated') {
     warning_empty.style.display = 'block';
-    return;
   } else {
     // hide warnings
     warning.style.display = 'none';
@@ -229,10 +228,8 @@ function addCxPassword() {
 
   if (complexInput.length > 12) {
     warning.style.display = 'block';
-    return;
   } else if (complexInput.length == 0 || pwValue === 'not generated') {
     warning_empty.style.display = 'block';
-    return;
   } else {
     // hide warnings and push to storage
     warning.style.display = 'none';
@@ -250,7 +247,6 @@ function checkMax(listItem) {
   } else {
     var displayedWarning = document.querySelector('.displayed-warning');
     displayedWarning.style.display = 'block';
-    return;
   }
 }
 
@@ -274,25 +270,30 @@ function createAppend(status, value) {
 function pushToStorage(key, value) {
   if (localStorage.length < 6) {
     localStorage.setItem(key, value);
-  } else {
-    return;
-  }
+  } // TODO: check if there is already a key with the same name value
+
 }
 
 function getButton(btn) {
-  btn.addEventListener('click', function () {
-    for (var i = 0; i < localStorage.length; i++) {
-      var key = ls.key(i);
-      localStorage.removeItem(key);
-      location.reload();
+  btn.addEventListener('click', function (e) {
+    // use event propagation to remove stored passwords
+    var listItem = e.target.parentElement.parentElement;
+    var listItemChild = listItem.childNodes[0];
+    var pwChild = listItemChild.childNodes[1];
+    var pwValue = pwChild.childNodes[0].textContent;
+
+    for (key in localStorage) {
+      if (pwValue === key) {
+        e.target.parentElement.parentElement.remove();
+        localStorage.removeItem(key);
+      }
     }
   });
 }
 
 function refresh(input) {
   // clear input 
-  input.value = '';
-  location.reload();
+  return input.value = '';
 }
 },{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -322,7 +323,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56560" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58559" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
