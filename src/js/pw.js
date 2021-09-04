@@ -123,7 +123,7 @@ function addCxPassword() {
         // hide warnings and push to storage
         warning.style.display = 'none'
         warning_empty.style.display = 'none'
-        localStorage.setItem(complexInput, pwValue)
+        pushToStorage(complexInput, pwValue)
 
         createAppend(complexInput, pwValue)
         refresh(cxInput)
