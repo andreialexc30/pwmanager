@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "serve -s src/index.html",
-    "build": "parcel build dist/index.html",
-    "heroku-prebuild": "npm install -f",
-    "heroku-postbuild": "npm build"
+    "start": "parcel src/index.html",
+    "build": "parcel build dist/index.html"
   },
   "author": "",
   "license": "ISC",
