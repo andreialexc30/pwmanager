@@ -93,10 +93,8 @@ function addSpPassword() {
     const warning_empty = document.querySelector('.warning_sp_empty')
     if (simpleInput.length > 12) {
         warning.style.display = 'block'
-        return
     } else if (simpleInput.length == 0 || pwValue === 'not generated') {
         warning_empty.style.display = 'block'
-        return
     } else {
         // hide warnings
         warning.style.display = 'none'
@@ -119,10 +117,8 @@ function addCxPassword() {
     const warning_empty = document.querySelector('.warning_cx_empty')
     if (complexInput.length > 12) {
         warning.style.display = 'block'
-        return
     } else if (complexInput.length == 0 || pwValue === 'not generated') {
         warning_empty.style.display = 'block'
-        return
     } else {
         // hide warnings and push to storage
         warning.style.display = 'none'
@@ -141,7 +137,6 @@ function checkMax(listItem) {
     } else {
         const displayedWarning = document.querySelector('.displayed-warning')
         displayedWarning.style.display = 'block'
-        return
     }
 }
 
@@ -167,24 +162,29 @@ function createAppend(status, value) {
 function pushToStorage(key, value) {
     if (localStorage.length < 6) {
         localStorage.setItem(key, value) 
-    } else {
-        return
     }
+
+    // TODO: check if there is already a key with the same name value
 }
 
 function getButton(btn) {
-    btn.addEventListener('click', () => {
-        for (let i = 0; i < localStorage.length; i++) {
-            let key = ls.key(i)
-            
-            localStorage.removeItem(key)
-            location.reload()
+    btn.addEventListener('click', (e) => {
+        // use event propagation to remove stored passwords
+        const listItem = e.target.parentElement.parentElement
+        const listItemChild = listItem.childNodes[0]
+        const pwChild = listItemChild.childNodes[1]
+        const pwValue = pwChild.childNodes[0].textContent
+
+        for(key in localStorage) {
+            if(pwValue === key) {
+                e.target.parentElement.parentElement.remove()
+                localStorage.removeItem(key)
+            }
         }
     })
 }
 
 function refresh(input) {
     // clear input 
-    input.value = ''
-    location.reload()
+    return input.value = ''
 }
